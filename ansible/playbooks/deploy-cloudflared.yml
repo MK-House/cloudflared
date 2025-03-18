@@ -1,6 +1,7 @@
 ---
 - name: "Publish Cloudflared project to remote nodes"
   hosts: "all"
+  ignore_unreachable: true
   become: true
   any_errors_fatal: true
   vars:
