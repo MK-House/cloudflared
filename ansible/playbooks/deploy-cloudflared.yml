@@ -39,6 +39,7 @@
 
 - name: "Clean and publish Cloudflared project to remote nodes"
   hosts: "all"
+  ignore_unreachable: true
   become: true
   any_errors_fatal: true
   vars:
@@ -78,6 +79,7 @@
 
 - name: "Install Docker"
   hosts: "all"
+  ignore_unreachable: true
   become: true
   any_errors_fatal: true
   tasks:
@@ -174,6 +176,7 @@
 
 - name: "Deploy Cloudflared"
   hosts: "all"
+  ignore_unreachable: true
   become: true
   any_errors_fatal: true
   vars:
