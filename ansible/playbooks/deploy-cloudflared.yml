@@ -1,5 +1,5 @@
 ---
-- name: "Group Ansible Controller hosts"
+- name: "Group Cloudflared hosts"
   hosts: "all"
   ignore_unreachable: true
 
