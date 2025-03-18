@@ -49,7 +49,7 @@
         project_dir.stat.exists
 
 - name: "Clean and publish Cloudflared project to remote nodes"
-  hosts: "all"
+  hosts: "label_cloudflared"
   become: true
   any_errors_fatal: true
   vars:
@@ -88,7 +88,7 @@
         mode: "0755"
 
 - name: "Install Docker"
-  hosts: "all"
+  hosts: "label_cloudflared"
   become: true
   any_errors_fatal: true
   tasks:
@@ -184,7 +184,7 @@
         docker_installed.failed
 
 - name: "Deploy Cloudflared"
-  hosts: "all"
+  hosts: "label_cloudflared"
   become: true
   any_errors_fatal: true
   vars:
