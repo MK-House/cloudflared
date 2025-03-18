@@ -11,7 +11,6 @@
       when: |
         "cloudflared" in hostvars[inventory_hostname]["labels"]
 
----
 - name: "Publish Cloudflared project to remote nodes"
   hosts: "label_cloudflared"
   become: true
