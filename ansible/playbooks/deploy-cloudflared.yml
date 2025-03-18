@@ -1,7 +1,19 @@
 ---
-- name: "Publish Cloudflared project to remote nodes"
+- name: "Group Ansible Controller hosts"
   hosts: "all"
   ignore_unreachable: true
+
+  tasks:
+
+    - name: "Group hosts by label"
+      group_by:
+        key: "label_cloudflared"
+      when: |
+        "cloudflared" in hostvars[inventory_hostname]["labels"]
+
+---
+- name: "Publish Cloudflared project to remote nodes"
+  hosts: "label_cloudflared"
   become: true
   any_errors_fatal: true
   vars:
@@ -39,7 +51,6 @@
 
 - name: "Clean and publish Cloudflared project to remote nodes"
   hosts: "all"
-  ignore_unreachable: true
   become: true
   any_errors_fatal: true
   vars:
@@ -79,7 +90,6 @@
 
 - name: "Install Docker"
   hosts: "all"
-  ignore_unreachable: true
   become: true
   any_errors_fatal: true
   tasks:
@@ -176,7 +186,6 @@
 
 - name: "Deploy Cloudflared"
   hosts: "all"
-  ignore_unreachable: true
   become: true
   any_errors_fatal: true
   vars:
